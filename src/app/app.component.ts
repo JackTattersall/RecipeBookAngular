@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  linkSelected = 'recipe';
+
+  onNavigate(linkSelected: string) {
+    this.linkSelected = linkSelected;
+  }
 }
