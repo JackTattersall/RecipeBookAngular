@@ -8,8 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   linkSelected = 'recipe';
   title = 'RecipeBook';
-
-  onNavigate(linkSelected: string) {
-    this.linkSelected = linkSelected;
-  }
 }
