@@ -3,6 +3,7 @@ import {Subject} from 'rxjs/Subject';
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
 
   private ingredients: Ingredient[] = [
     new Ingredient('cheese', 2),
@@ -13,15 +14,28 @@ export class ShoppingListService {
 
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
-    this.ingredientsChanged.next(this.ingredients.slice());
+    this.emitAlteredIngredients();
+  }
+
+  getIngredient(index: number) {
+    return this.ingredients[index];
   }
 
   getIngredients() {
     return this.ingredients.slice();
   }
 
-  clear() {
-    this.ingredients.length = 0;
+  deleteIngredient(index: number) {
+    this.ingredients.splice(index, 1);
+    this.emitAlteredIngredients();
+  }
+
+  updateIngredient(index: number, ingredient: Ingredient) {
+    this.ingredients[index] = ingredient;
+    this.emitAlteredIngredients();
+  }
+
+  emitAlteredIngredients() {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 }

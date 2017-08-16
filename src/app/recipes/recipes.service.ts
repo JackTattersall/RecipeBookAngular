@@ -32,4 +32,8 @@ export class RecipeService {
   getRecipeById(index: number) {
     return this.recipes[index];
   }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.concat(recipe);
+  }
 }
